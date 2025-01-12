@@ -10,3 +10,10 @@ It leverages Amazon SNS, AWS Lambda and Python, Amazon EvenBridge and NBA APIs t
 - Sends formatted score updates to subscribers via SMS/Email using Amazon SNS.
 - Scheduled automation for regular updates using Amazon EventBridge.
 - Designed with security in mind, following the principle of least privilege for IAM roles
+
+#### Technologies
+- Cloud Provider: AWS
+- Core Services: SNS, Lambda, EventBridge
+- External API: NBA Game API (SportsData.io)
+- Programming Language: Python 3.x
+- IAM Security: Least privilege policies for Lambda, SNS, and EventBridge.
