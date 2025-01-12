@@ -20,7 +20,9 @@ functions:
     handler: main.lambda_handler
     events:
       - eventBridge:
-          schedule: cron(0 9-23/2 0-2/2 * * ? *)
+          schedule: cron(0 9-23/2 * * ? *)
+      - eventBridge:
+          schedule: cron(0 0-2/2 * * ? *)
     environment:
       SNS_TOPIC_ARN: ${self:provider.environment.SNS_TOPIC_ARN}
 
