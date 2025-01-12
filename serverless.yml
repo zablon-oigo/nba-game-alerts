@@ -1,0 +1,41 @@
+service: nba-alert-system
+
+provider:
+  name: aws
+  runtime: python3.9
+  region: us-east-1
+  stage: dev
+  environment:
+    NBA_API_KEY: ${env:NBA_API_KEY}
+    SNS_TOPIC_ARN: !Ref SNSTopic
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "sns:Publish"
+      Resource: !Ref SNSTopic
+
+plugins:
+  - serverless-dotenv-plugin
+
+functions:
+  nbaAlert:
+    handler: main.lambda_handler
+    events:
+      - eventBridge:
+          schedule: cron(0 9-23/2 0-2/2 * * ? *)
+    environment:
+      SNS_TOPIC_ARN: ${self:provider.environment.SNS_TOPIC_ARN}
+
+resources:
+  Resources:
+    SNSTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: nba-game-alerts
+
+    SNSTopicSubscription:
+      Type: AWS::SNS::Subscription
+      Properties:
+        Protocol: email
+        Endpoint: ${env:SNS_EMAIL} 
+        TopicArn: !Ref SNSTopic
