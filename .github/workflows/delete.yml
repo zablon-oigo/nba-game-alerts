@@ -22,7 +22,6 @@ jobs:
       - name: Install Global Dependencies
         run: |
           npm install -g serverless
-          npm install -g serverless-dotenv-plugin
       
       - name: Remove Serverless Resources
         run: serverless remove

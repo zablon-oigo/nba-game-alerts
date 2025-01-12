@@ -21,7 +21,7 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install -g serverless
-          npm install serverless-dotenv-plugin --legacy-peer-deps
+
       - name: serverless deploy
         uses: serverless/github-action@v3.2
         with:

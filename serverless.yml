@@ -14,8 +14,6 @@ provider:
         - "sns:Publish"
       Resource: !Ref SNSTopic
 
-plugins:
-  - serverless-dotenv-plugin
 
 functions:
   nbaAlert:
